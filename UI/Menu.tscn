@@ -1,0 +1,81 @@
+[gd_scene load_steps=4 format=3 uid="uid://l74n0yf6rq88"]
+
+[ext_resource type="Script" path="res://UI/Menu.gd" id="1_vlc2a"]
+[ext_resource type="Script" path="res://UI/Button_Quit.gd" id="2_qec1m"]
+
+[sub_resource type="Theme" id="Theme_g0ydu"]
+default_font_size = 0
+
+[node name="Menu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_vlc2a")
+
+[node name="MenuControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme = SubResource("Theme_g0ydu")
+
+[node name="ColorRect" type="ColorRect" parent="MenuControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1604.0
+offset_top = -1494.0
+offset_right = 1746.0
+offset_bottom = 1554.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.356863)
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuControl/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuControl/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Title Label" type="Label" parent="MenuControl/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 60
+text = "My Game"
+
+[node name="ColorRect" type="ColorRect" parent="MenuControl/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
+[node name="ReferenceRect" type="ReferenceRect" parent="MenuControl/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+border_width = 0.0
+
+[node name="Play Button" type="Button" parent="MenuControl/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "RESUME"
+alignment = 0
+
+[node name="Settings Button" type="Button" parent="MenuControl/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "SETTINGS"
+alignment = 0
+
+[node name="Quit Button" type="Button" parent="MenuControl/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Exit to desktop. The game will not be saved."
+text = "QUIT"
+alignment = 0
+script = ExtResource("2_qec1m")

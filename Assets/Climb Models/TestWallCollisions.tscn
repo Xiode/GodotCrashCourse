@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://wko5k7yuu6nj"]
+
+[ext_resource type="PackedScene" uid="uid://cwnfnebpi2mvc" path="res://Assets/Climb Models/Blend/TestWall.blend" id="1_4w2mj"]
+
+[node name="TestWall" instance=ExtResource("1_4w2mj")]
+
+[node name="TestWall" parent="." index="0"]
+visible = false

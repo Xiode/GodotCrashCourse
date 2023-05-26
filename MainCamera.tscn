@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cyvn5cu63xicp"]
+
+[ext_resource type="Shader" path="res://pixelart_stylizer.gdshader" id="1_1lll6"]
+[ext_resource type="Script" path="res://CameraPostProcess.gd" id="1_rbgq3"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_up643"]
+orientation = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kb2ke"]
+render_priority = 0
+shader = ExtResource("1_1lll6")
+shader_parameter/shadows_enabled = false
+shader_parameter/highlights_enabled = false
+shader_parameter/shadow_strength = 0.0
+shader_parameter/highlight_strength = 0.0
+shader_parameter/highlight_color = Color(1, 1, 1, 1)
+shader_parameter/shadow_color = Color(0, 0, 0, 1)
+
+[node name="Main Camera" type="Camera3D"]
+current = true
+script = ExtResource("1_rbgq3")
+
+[node name="Postprocess" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.873)
+mesh = SubResource("QuadMesh_up643")
+surface_material_override/0 = SubResource("ShaderMaterial_kb2ke")
