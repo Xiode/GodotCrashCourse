@@ -32,7 +32,7 @@ enum WEAPON_TYPE { DEFAULT, GRENADE }
 ## Grenade cooldown
 @export var grenade_cooldown := 0.5
 
-#@onready var _menu_root: CanvasLayer = $Menu
+@onready var _menu_root: CanvasLayer = $Menu
 @onready var _rotation_root: Node3D = $CharacterRotationRoot
 @onready var _camera_controller: CameraController = $CameraController
 #@onready var _attack_animation_player: AnimationPlayer = $CharacterRotationRoot/MeleeAnchor/AnimationPlayer

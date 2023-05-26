@@ -1,6 +1,5 @@
 extends CanvasLayer
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -20,7 +19,7 @@ func pause():
 	get_tree().paused = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	pass
-
+	
 func unpause():
 	self.visible = false
 	get_tree().paused = false

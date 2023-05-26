@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://8x58tta0qqba"]
+[gd_scene load_steps=8 format=3 uid="uid://8x58tta0qqba"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_juf0d"]
 [ext_resource type="Script" path="res://Player/CameraController.gd" id="2_g0a1u"]
+[ext_resource type="PackedScene" uid="uid://l74n0yf6rq88" path="res://UI/Menu.tscn" id="3_v0xr3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8x2xm"]
 
@@ -68,3 +69,6 @@ debug_shape_custom_color = Color(0, 1, 0, 1)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Menu" parent="." instance=ExtResource("3_v0xr3")]
+visible = false
