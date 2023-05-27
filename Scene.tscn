@@ -80,4 +80,4 @@ environment = ExtResource("3_3nrol")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.92611, 0.012856, -11.6888)
 
 [node name="RoughWall" parent="." instance=ExtResource("6_b0rlq")]
-transform = Transform3D(-0.0778327, 0, -0.996966, 0, 1, 0, 0.996966, 0, -0.0778327, 11.0945, -0.935759, -31.5413)
+transform = Transform3D(0.0678934, 0, -0.997693, 0, 1, 0, 0.997693, 0, 0.0678934, 9.46636, -0.56008, -31.2536)

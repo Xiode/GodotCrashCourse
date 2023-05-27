@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://dbu3qhfh7a1nb"]
 
-[ext_resource type="PackedScene" uid="uid://c7nnhhn60nl7d" path="res://Assets/Climb Models/Meshes/RoughWall.blend" id="1_g4s1p"]
+[ext_resource type="PackedScene" uid="uid://ulfaw2vu38on" path="res://Assets/Climb Models/Meshes/RoughWall.gltf" id="1_iwni2"]
 [ext_resource type="Material" uid="uid://xvno0cf2rsbl" path="res://Assets/Climb Models/RockWall.tres" id="2_sq1vo"]
 
-[node name="RoughWall" instance=ExtResource("1_g4s1p")]
+[node name="RoughWall" instance=ExtResource("1_iwni2")]
 
 [node name="Plane" parent="." index="0"]
 surface_material_override/0 = ExtResource("2_sq1vo")
