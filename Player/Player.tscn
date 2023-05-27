@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://l74n0yf6rq88" path="res://UI/Menu.tscn" id="3_v0xr3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8x2xm"]
+radius = 0.3
+height = 1.8
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_gqx4v"]
 
@@ -14,6 +16,8 @@ dof_blur_far_distance = 45.0
 dof_blur_amount = 0.01
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_a3ijt"]
+height = 1.8
+radius = 0.3
 
 [node name="Player" type="CharacterBody3D" groups=["damageables"]]
 axis_lock_angular_x = true
@@ -69,6 +73,8 @@ debug_shape_custom_color = Color(0, 1, 0, 1)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+radius = 0.3
+height = 1.8
 
 [node name="Menu" parent="." instance=ExtResource("3_v0xr3")]
 visible = false

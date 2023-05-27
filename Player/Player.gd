@@ -124,42 +124,12 @@ func _physics_process(delta: float) -> void:
 	_shoot_cooldown_tick += delta
 	_grenade_cooldown_tick += delta
 
-#	if is_attacking:
-#		match _equipped_weapon:
-#			WEAPON_TYPE.DEFAULT:
-#				if is_aiming and is_on_floor():
-#					if _shoot_cooldown_tick > shoot_cooldown:
-#						_shoot_cooldown_tick = 0.0
-#						shoot()
-#				elif is_just_attacking:
-#					attack()
-#			WEAPON_TYPE.GRENADE:
-#				if _grenade_cooldown_tick > grenade_cooldown:
-#					_grenade_cooldown_tick = 0.0
-#					_grenade_aim_controller.throw_grenade()
-
 	velocity.y += _gravity * delta
 
 	if is_just_jumping:
 		velocity.y += jump_initial_impulse
 	elif is_air_boosting:
 		velocity.y += jump_additional_force * delta
-
-	# Set character animation
-#	if is_just_jumping:
-#		_character_skin.jump()
-#	elif not is_on_floor() and velocity.y < 0:
-#		_character_skin.fall()
-#	elif is_on_floor():
-#		var xz_velocity := Vector3(velocity.x, 0, velocity.z)
-#		if xz_velocity.length() > stopping_speed:
-#			_character_skin.set_moving(true)
-#			_character_skin.set_moving_speed(inverse_lerp(0.0, move_speed, xz_velocity.length()))
-#		else:
-#			_character_skin.set_moving(false)
-#
-#	if is_just_on_floor:
-#		_landing_sound.play()
 
 	var position_before := global_position
 	move_and_slide()
@@ -180,15 +150,6 @@ func attack() -> void:
 
 
 func shoot() -> void:
-#	var bullet := BULLET_SCENE.instantiate()
-#	bullet.shooter = self
-#	var origin := global_position + Vector3.UP
-#	var aim_target := _camera_controller.get_aim_target()
-#	var aim_direction := (aim_target - origin).normalized()
-#	bullet.velocity = aim_direction * bullet_speed
-#	bullet.distance_limit = 14.0
-#	get_parent().add_child(bullet)
-#	bullet.global_position = origin
 	pass
 
 
@@ -198,18 +159,9 @@ func reset_position() -> void:
 
 func collect_coin() -> void:
 	_coins += 1
-#	_ui_coins_container.update_coins_amount(_coins)
 
 
 func lose_coins() -> void:
-#	var lost_coins: int = min(_coins, 5)
-#	_coins -= lost_coins
-#	for i in lost_coins:
-#		var coin := COIN_SCENE.instantiate()
-#		get_parent().add_child(coin)
-#		coin.global_position = global_position
-#		coin.spawn(1.5)
-#	_ui_coins_container.update_coins_amount(_coins)
 	pass
 
 
