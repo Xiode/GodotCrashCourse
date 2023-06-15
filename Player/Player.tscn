@@ -27,6 +27,12 @@ axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
 script = ExtResource("1_juf0d")
+move_speed = null
+acceleration = null
+jump_initial_impulse = null
+jump_additional_force = null
+rotation_speed = null
+stopping_speed = null
 
 [node name="CharacterCollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
