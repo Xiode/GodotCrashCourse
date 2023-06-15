@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://8x58tta0qqba"]
+[gd_scene load_steps=9 format=3 uid="uid://8x58tta0qqba"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_juf0d"]
 [ext_resource type="Script" path="res://Player/CameraController.gd" id="2_g0a1u"]
@@ -18,6 +18,9 @@ dof_blur_amount = 0.01
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_a3ijt"]
 height = 1.8
 radius = 0.3
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ps6li"]
+radius = 1.4
 
 [node name="Player" type="CharacterBody3D" groups=["damageables"]]
 axis_lock_angular_x = true
@@ -61,6 +64,19 @@ debug_shape_custom_color = Color(0, 0, 0, 0)
 
 [node name="CharacterRotationRoot" type="Node3D" parent="."]
 
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CharacterRotationRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+radius = 0.3
+height = 1.8
+
+[node name="LeftHand" type="CSGBox3D" parent="CharacterRotationRoot/CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.701116, 0.248887, 0)
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="RightHand" type="CSGBox3D" parent="CharacterRotationRoot/CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.719037, 0.184998, 0)
+size = Vector3(0.2, 0.2, 0.2)
+
 [node name="LandingSound" type="AudioStreamPlayer3D" parent="."]
 volume_db = 1.0
 
@@ -71,10 +87,11 @@ target_position = Vector3(0, 0.5, 0)
 max_results = 1
 debug_shape_custom_color = Color(0, 1, 0, 1)
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-radius = 0.3
-height = 1.8
-
 [node name="Menu" parent="." instance=ExtResource("3_v0xr3")]
 visible = false
+
+[node name="ClimbArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.971179, 0)
+
+[node name="ClimbCollision" type="CollisionShape3D" parent="ClimbArea"]
+shape = SubResource("SphereShape3D_ps6li")
