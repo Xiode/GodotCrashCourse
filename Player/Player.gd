@@ -32,6 +32,8 @@ signal weapon_switched(weapon_name: String)
 @onready var _is_on_floor_buffer := false
 @onready var _climbing_mode := false
 
+var wall_normal: Vector3
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	_camera_controller.setup(self)
@@ -48,7 +50,7 @@ func _physics_process(delta: float) -> void:
 	# Checks for jumping input. Set is_just_jumping. Add y velocity if jumping.
 	grounded_state_check(delta)
 
-	# WASD input is taken here. Character is rotated to face _last_strong_direction.
+	# WASD input is taken here. Character is rotated to face _last_strong_direction if we're walking, or -wall_normal if we're climbing.
 	orient_me(delta)
 
 	# _move_direction is applied to velocity. Check to see if we're in climbing mode.
@@ -61,13 +63,16 @@ func _physics_process(delta: float) -> void:
 func climbing_raycast(delta: float) -> void:
 	var space_state = get_world_3d().direct_space_state
 
-	var q = PhysicsRayQueryParameters3D.create(global_position+Vector3.UP, global_position+Vector3.UP+_last_strong_direction)
+	var facing := _rotation_root.transform.basis * -Vector3.FORWARD
+
+	var q = PhysicsRayQueryParameters3D.create(global_position+Vector3.UP, global_position+Vector3.UP+facing)
 	q.exclude = [self]
 	var r = space_state.intersect_ray(q)
 
-	DebugDraw.draw_line(global_position+Vector3.UP, global_position+Vector3.UP+(_last_strong_direction), Color(1,0,0))
+	DebugDraw.draw_line(global_position+Vector3.UP, global_position+Vector3.UP+(facing), Color(1,0,0))
 	if not r.is_empty():
 		DebugDraw.draw_box(r.position, Vector3(0.2, 0.2, 0.2), Color(0,0,1))
+		wall_normal = r.normal
 		if Input.is_action_just_pressed("use"):
 			_climbing_mode = not _climbing_mode
 	elif _climbing_mode:
@@ -92,7 +97,7 @@ func grounded_state_check(delta: float) -> void:
 	if is_just_jumping:
 		velocity.y += jump_initial_impulse
 
-# WASD input is taken here. Character is rotated to face _last_strong_direction.
+# WASD input is taken here. Character is rotated to face _last_strong_direction if we're walking, or -wall_normal if we're climbing.
 func orient_me(delta: float) -> void:
 
 	# Gets WASD input, transforms it per the way _camera_controller is facing, outputs it as Vector3 'input'.
@@ -104,9 +109,12 @@ func orient_me(delta: float) -> void:
 		_last_strong_direction = _move_direction.normalized()
 
 	# Rotates _rotation_root to face Vector3 direction.
-	_orient_character_to_direction(_last_strong_direction, delta)
 
-# _move_direction is applied to velocity. Check to see if we're in climbing mode.
+	var orient_direction := -wall_normal if _climbing_mode else _last_strong_direction
+
+	_orient_character_to_direction(orient_direction, delta)
+
+# _move_direction is applied to velocity. Check to see if we're in climbing mode. If we are, don't do gravity
 func falling(delta: float) -> void:
 	# We separate out the y velocity to not interpolate on the gravity
 	var y_velocity := velocity.y
@@ -150,17 +158,6 @@ func _get_camera_oriented_input() -> Vector3:
 	input = _camera_controller.global_transform.basis * input
 	input.y = 0.0
 	return input
-
-
-func play_foot_step_sound() -> void:
-#	_step_sound.pitch_scale = randfn(1.2, 0.2)
-#	_step_sound.play()
-	pass
-
-
-func damage(_impact_point: Vector3, force: Vector3) -> void:
-	pass
-
 
 # Rotates _rotation_root to face Vector3 direction.
 func _orient_character_to_direction(direction: Vector3, delta: float) -> void:

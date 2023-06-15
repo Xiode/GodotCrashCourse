@@ -78,12 +78,6 @@ environment = ExtResource("3_3nrol")
 
 [node name="Player" parent="." instance=ExtResource("4_v80dm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.92611, 0.012856, -11.6888)
-move_speed = null
-acceleration = null
-jump_initial_impulse = null
-jump_additional_force = null
-rotation_speed = null
-stopping_speed = null
 
 [node name="RoughWall" parent="." instance=ExtResource("6_b0rlq")]
 transform = Transform3D(0.0678934, 0, -0.997693, 0, 1, 0, 0.997693, 0, 0.0678934, 9.46636, -0.56008, -31.2536)
