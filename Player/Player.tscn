@@ -66,22 +66,36 @@ target_position = Vector3(0, 0, -100)
 debug_shape_custom_color = Color(0, 0, 0, 0)
 
 [node name="HeadRoot" type="CSGBox3D" parent="."]
-transform = Transform3D(0.438324, 0, 0, 0, 0.438324, 0, 0, 0, 0.438324, 0, 1.67528, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.61403, 0)
+size = Vector3(0.5, 0.5, 0.5)
 
 [node name="CharacterRotationRoot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.837648, 0)
 
 [node name="BodyRoot" type="CSGCylinder3D" parent="CharacterRotationRoot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.706051, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15768, 0)
 radius = 0.2
 height = 1.19562
 
 [node name="LeftHand" type="CSGBox3D" parent="CharacterRotationRoot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.249, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.385269, 0)
 size = Vector3(0.2, 0.2, 0.2)
 
 [node name="RightHand" type="CSGBox3D" parent="CharacterRotationRoot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.185, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.321269, 0)
 size = Vector3(0.2, 0.2, 0.2)
+
+[node name="LeftShoulder" type="Node3D" parent="CharacterRotationRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.202312, 0.384522, 0)
+
+[node name="RightShoulder" type="Node3D" parent="CharacterRotationRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.205843, 0.384522, 0)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="CharacterRotationRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.776377, 0)
+remote_path = NodePath("../../HeadRoot")
+update_rotation = false
+update_scale = false
 
 [node name="LandingSound" type="AudioStreamPlayer3D" parent="."]
 volume_db = 1.0
